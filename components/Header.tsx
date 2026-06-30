@@ -50,7 +50,7 @@ export default function Header() {
           <img 
             src="/logo.png" 
             alt="BaliWasteAI Logo" 
-            style={{ width: "32px", height: "32px", objectFit: "contain", borderRadius: "4px" }} 
+            style={{ width: "48px", height: "48px", objectFit: "contain", borderRadius: "8px" }} 
           />
           <span
             style={{
