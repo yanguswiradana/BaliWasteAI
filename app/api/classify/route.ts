@@ -3,7 +3,7 @@ import { GoogleGenerativeAI, Schema, SchemaType } from "@google/generative-ai";
 
 // Rate Limit in-memory store (works per Vercel serverless instance)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-const MAX_REQUESTS = 15; // 15 requests per IP
+const MAX_REQUESTS = 5; // 5 requests per IP
 const WINDOW_MS = 60 * 60 * 1000; // per 1 hour
 
 function checkRateLimit(ip: string): boolean {
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     const ip = req.headers.get("x-forwarded-for") || "unknown-ip";
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
-        { error: "Limit klasifikasi (15x/jam) telah habis. Silakan coba lagi nanti untuk menghemat token." },
+        { error: "Limit penggunaan klasifikasi Anda (5x/jam) telah habis. Harap tunggu atau coba lagi nanti." },
         { status: 429 }
       );
     }
