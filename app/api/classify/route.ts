@@ -1,8 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI, Schema, SchemaType } from "@google/generative-ai";
 
+// Rate Limit in-memory store (works per Vercel serverless instance)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const MAX_REQUESTS = 15; // 15 requests per IP
+const WINDOW_MS = 60 * 60 * 1000; // per 1 hour
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + WINDOW_MS });
+    return true;
+  }
+  if (record.count >= MAX_REQUESTS) {
+    return false;
+  }
+  record.count++;
+  return true;
+}
+
 export async function POST(req: NextRequest) {
   try {
+    // 1. IP Based Rate Limiting
+    const ip = req.headers.get("x-forwarded-for") || "unknown-ip";
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: "Limit klasifikasi (15x/jam) telah habis. Silakan coba lagi nanti untuk menghemat token." },
+        { status: 429 }
+      );
+    }
+
     const formData = await req.formData();
     const image = formData.get("image") as File | null;
 
