@@ -47,11 +47,10 @@ export default function Header() {
           }}
           id="header-logo"
         >
-          {/* Inline mini tong icon */}
           <img 
             src="/logo.png" 
             alt="BaliWasteAI Logo" 
-            style={{ width: "24px", height: "24px", objectFit: "contain", borderRadius: "4px" }} 
+            style={{ width: "32px", height: "32px", objectFit: "contain", borderRadius: "4px" }} 
           />
           <span
             style={{

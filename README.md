@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/logo.png" alt="BaliWasteAI Logo" width="120" />
+  <img src="public/logo.png" alt="BaliWasteAI Logo" width="200" />
   
   # BaliWasteAI 🌿
   
