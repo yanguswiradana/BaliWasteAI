@@ -26,7 +26,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BaliWaste — Sampah Bali | Real-time TPS Capacity",
+  title: "BaliWasteAI | Real-time TPS Capacity & Smart Classification",
   description:
     "Check live landfill (TPS) capacity across Bali before making the trip. Find the nearest available TPS and classify your waste with AI.",
   keywords: "TPS Bali, sampah Bali, buang sampah Bali, landfill capacity Bali",

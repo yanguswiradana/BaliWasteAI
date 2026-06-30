@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <img src="public/window.svg" alt="BaliWasteAI Logo" width="100" />
+  
+  # BaliWasteAI 🌿
+  
+  **Real-Time Landfill Capacity Tracking & AI-Powered Waste Classification**  
+  *Never guess where to throw your trash again.*
+</div>
 
-## Getting Started
+---
 
-First, run the development server:
+## 📖 Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**BaliWasteAI** is an intelligent, bilingual mobile-first web application designed to help citizens and businesses in Bali manage their waste disposal efficiently. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+By providing **real-time capacity data** of local landfills (TPS) and integrating **Google's Gemini 3.5 Flash AI** for instant waste classification, the app reduces the chance of rejected waste and overflowing bins.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Core Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **🗺️ Interactive Map (Peta)**
+   - View real-time status and capacity of all TPS across Bali.
+   - Built on robust Leaflet technology with mobile-friendly touch interactions.
+   - Intelligent clustering and color-coded status badges.
 
-## Learn More
+2. **🤖 Smart AI Classification (Gemini 3.5 Flash)**
+   - Capture photos directly from your browser or upload images.
+   - Automatic image compression for low bandwidth usage.
+   - The AI instantly classifies waste into Organic or Non-Organic and provides practical disposal tips based on your selected language.
+   - Built-in rate limiting (5 requests/hour per IP) to prevent quota exhaustion.
 
-To learn more about Next.js, take a look at the following resources:
+3. **🔍 Instant Search (Cari)**
+   - Search landfills by name, region, or address.
+   - Dynamic real-time sorting and filtering.
+   
+4. **🔒 Secure Admin Dashboard**
+   - Manage landfill statuses via a beautiful, password-protected dashboard.
+   - Built with Next.js 15 Server Actions and HTTP-Only cookies.
+   - Real-time client-side synchronization without page reloads using shared `localStorage` events.
+   - Automatic Google Maps Shortlink (`goo.gl`) resolving into exact geographic coordinates.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. **🌐 Bilingual Interface (i18n)**
+   - Seamlessly switch between **English** and **Bahasa Indonesia**.
+   - AI responses intelligently adapt to the selected language.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💻 Tech Stack
 
-## Deploy on Vercel
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Styling**: Modern Vanilla CSS + CSS Modules (Glassmorphism & Micro-animations)
+- **AI Model**: `@google/generative-ai` (Gemini 3.5 Flash)
+- **Map Engine**: `react-leaflet` / `leaflet`
+- **i18n**: `next-intl`
+- **Deployment**: Optimized for Vercel Serverless & Edge environments
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Getting Started
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Prerequisites
+
+Ensure you have Node.js 18+ installed on your machine.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yanguswiradana/BaliWasteAI.git
+   cd BaliWasteAI
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Configure Environment Variables:
+   Create a `.env.local` file in the root directory and add the following keys:
+   ```env
+   # Your Google Gemini API Key
+   GEMINI_API_KEY=your_gemini_api_key_here
+   
+   # Admin Dashboard Credentials
+   ADMIN_EMAIL=admin@baliwaste.com
+   ADMIN_PASSWORD=securepassword123
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+<div align="center">
+  <i>Developed with ❤️ for a cleaner Bali.</i>
+</div>
