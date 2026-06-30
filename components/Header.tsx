@@ -48,22 +48,11 @@ export default function Header() {
           id="header-logo"
         >
           {/* Inline mini tong icon */}
-          <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
-            <path
-              d="M1 4h18l-1.5 17.5H2.5L1 4z"
-              fill="var(--bw-aman-light)"
-              stroke="var(--bw-aman)"
-              strokeWidth="1.5"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M1 4h18l-1.5 10.5H2.5L1 4z"
-              fill="var(--bw-aman)"
-              opacity="0.7"
-            />
-            <rect x="-1" y="2" width="22" height="3" rx="1" fill="var(--bw-aman)" />
-            <line x1="10" y1="0" x2="10" y2="2" stroke="var(--bw-aman)" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+          <img 
+            src="/logo.png" 
+            alt="BaliWasteAI Logo" 
+            style={{ width: "24px", height: "24px", objectFit: "contain", borderRadius: "4px" }} 
+          />
           <span
             style={{
               fontFamily: "var(--font-display)",
