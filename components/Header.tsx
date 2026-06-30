@@ -73,7 +73,7 @@ export default function Header() {
               letterSpacing: "-0.02em",
             }}
           >
-            BaliWaste
+            BaliWasteAI
           </span>
         </Link>
 

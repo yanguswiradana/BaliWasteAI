@@ -228,7 +228,7 @@ function CameraViewfinder({ onCapture, onClose }: CameraViewfinderProps) {
           </select>
         ) : (
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-            Kamera · BaliWaste
+            Kamera · BaliWasteAI
           </span>
         )}
 

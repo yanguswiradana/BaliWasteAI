@@ -6,7 +6,7 @@ import { Landfill } from "@/components/LandfillCard";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "BaliWaste — Know Before You Go",
+  title: "BaliWasteAI — Know Before You Go",
   description: "Real-time TPS landfill capacity status across Bali. Find the nearest available waste disposal site before making the trip.",
 };
 
