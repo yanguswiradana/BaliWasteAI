@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "find": "Cari TPS",
+    "classify": "Klasifikasi",
+    "map": "Peta",
+    "admin": "Admin"
+  },
+  "lang": {
+    "toggle": "EN"
+  },
+  "hero": {
+    "eyebrow": "Status TPS real-time · Bali",
+    "title": "Tahu dulu, baru pergi.",
+    "subtitle": "Cek kapasitas TPS di seluruh Bali sebelum berangkat — supaya sampahmu tidak terbuang sia-sia.",
+    "cta_find": "Cari TPS Terdekat",
+    "cta_classify": "Klasifikasi Sampah Saya"
+  },
+  "status": {
+    "low": "Tersedia",
+    "half_full": "Setengah Penuh",
+    "full": "Penuh",
+    "low_short": "Rendah",
+    "half_full_short": "Setengah",
+    "full_short": "Penuh",
+    "unknown": "Tidak Diketahui"
+  },
+  "how": {
+    "eyebrow": "Cara kerja",
+    "step1_label": "01 — Cek",
+    "step1_title": "Lihat kapasitas langsung",
+    "step1_desc": "Setiap TPS menampilkan level isian terkini, diperbarui oleh petugas lokal.",
+    "step2_label": "02 — Navigasi",
+    "step2_title": "Temukan yang tersedia",
+    "step2_desc": "Bagikan lokasimu atau pilih area. Kami tampilkan TPS terdekat yang masih punya ruang.",
+    "step3_label": "03 — Buang",
+    "step3_title": "Langsung ke sana",
+    "step3_desc": "Dapatkan petunjuk arah langsung ke TPS yang masih bisa menerima sampah."
+  },
+  "find": {
+    "eyebrow": "TPS Terdekat",
+    "title": "Cari TPS di dekatmu",
+    "use_location": "Gunakan lokasi saya",
+    "locating": "Mendapatkan lokasi…",
+    "or": "atau cari berdasarkan area",
+    "placeholder": "Nama kecamatan atau area",
+    "search": "Cari",
+    "results_title": "TPS diurutkan berdasarkan jarak",
+    "no_results": "Tidak ada TPS yang ditemukan.",
+    "error_geo": "Akses lokasi ditolak. Silakan cari berdasarkan area.",
+    "directions": "Petunjuk Arah",
+    "last_updated": "Diperbarui",
+    "distance": "dari sini",
+    "notes": "Catatan"
+  },
+  "classify": {
+    "eyebrow": "Klasifikasi Sampah",
+    "title": "Jenis sampah apa ini?",
+    "subtitle": "Unggah atau ambil foto — AI kami akan mengklasifikasi sampahmu dalam hitungan detik.",
+    "upload": "Pilih foto",
+    "capture": "Ambil foto",
+    "or": "atau",
+    "analyzing": "Menganalisis sampahmu…",
+    "result_organic": "Sampah Organik",
+    "result_nonorganic": "Sampah Non-Organik",
+    "result_uncertain": "Tidak Pasti — periksa manual",
+    "tip_organic": "Sampah ini bisa dikompos. Cari tong hijau atau TPS organik.",
+    "tip_nonorganic": "Bawa ke bank sampah atau TPS non-organik untuk didaur ulang.",
+    "tip_uncertain": "Kami tidak bisa mengklasifikasi ini dengan pasti. Tanyakan ke petugas sampah lokalmu.",
+    "try_again": "Klasifikasi item lain",
+    "error": "Klasifikasi gagal. Silakan coba lagi.",
+    "confidence": "Keyakinan"
+  },
+  "map": {
+    "eyebrow": "Peta TPS Bali",
+    "title": "Semua TPS di Bali",
+    "filter_region": "Filter berdasarkan wilayah",
+    "filter_status": "Filter berdasarkan status",
+    "all_regions": "Semua wilayah",
+    "all_statuses": "Semua status",
+    "popup_updated": "Diperbarui",
+    "directions": "Petunjuk Arah"
+  },
+  "admin": {
+    "eyebrow": "Dasbor Admin",
+    "title": "Kelola Kapasitas TPS",
+    "login_title": "Masuk Admin",
+    "email": "Alamat email",
+    "password": "Kata sandi",
+    "login": "Masuk",
+    "logout": "Keluar",
+    "add_tps": "Tambah TPS Baru",
+    "edit": "Edit",
+    "save": "Simpan perubahan",
+    "cancel": "Batal",
+    "delete": "Hapus",
+    "confirm_delete": "Yakin ingin menghapus TPS ini?",
+    "updated_by": "Diperbarui oleh",
+    "tps_name": "Nama TPS",
+    "address": "Alamat",
+    "region": "Wilayah",
+    "capacity_notes": "Catatan Kapasitas",
+    "coordinates": "Koordinat (lat, lng)"
+  },
+  "footer": {
+    "tagline": "Menjaga sistem sampah Bali tetap transparan.",
+    "built": "Dibuat untuk komunitas Bali."
+  }
+}

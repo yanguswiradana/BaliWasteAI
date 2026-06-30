@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "home": "Home",
+    "find": "Find TPS",
+    "classify": "Classify Waste",
+    "map": "Map",
+    "admin": "Admin"
+  },
+  "lang": {
+    "toggle": "ID"
+  },
+  "hero": {
+    "eyebrow": "Real-time landfill status · Bali",
+    "title": "Know before you go.",
+    "subtitle": "Check landfill capacity across Bali before making the trip — so your waste finds a home.",
+    "cta_find": "Find Nearest TPS",
+    "cta_classify": "Classify My Waste"
+  },
+  "status": {
+    "low": "Available",
+    "half_full": "Half Full",
+    "full": "Full",
+    "low_short": "Low",
+    "half_full_short": "Half",
+    "full_short": "Full",
+    "unknown": "Unknown"
+  },
+  "how": {
+    "eyebrow": "How it works",
+    "step1_label": "01 — Check",
+    "step1_title": "See live capacity",
+    "step1_desc": "Each TPS shows current fill level, updated by local administrators.",
+    "step2_label": "02 — Navigate",
+    "step2_title": "Find available space",
+    "step2_desc": "Share your location or pick an area. We'll show the nearest sites that have room.",
+    "step3_label": "03 — Dispose",
+    "step3_title": "Drop and go",
+    "step3_desc": "Get turn-by-turn directions directly to the TPS with capacity."
+  },
+  "find": {
+    "eyebrow": "Nearest TPS",
+    "title": "Find a TPS near you",
+    "use_location": "Use my location",
+    "locating": "Getting your location…",
+    "or": "or search by area",
+    "placeholder": "Kecamatan or area name",
+    "search": "Search",
+    "results_title": "Landfills sorted by distance",
+    "no_results": "No landfills found matching your search.",
+    "error_geo": "Location access denied. Please search by area instead.",
+    "directions": "Get Directions",
+    "last_updated": "Updated",
+    "distance": "away",
+    "notes": "Note"
+  },
+  "classify": {
+    "eyebrow": "Waste Classifier",
+    "title": "What type of waste is this?",
+    "subtitle": "Upload or take a photo — our AI will classify your waste in seconds.",
+    "upload": "Choose a photo",
+    "capture": "Take a photo",
+    "or": "or",
+    "analyzing": "Analyzing your waste…",
+    "result_organic": "Organic Waste",
+    "result_nonorganic": "Non-Organic Waste",
+    "result_uncertain": "Uncertain — check manually",
+    "tip_organic": "This waste can be composted. Look for a green bin or organic TPS.",
+    "tip_nonorganic": "Bring this to a bank sampah or non-organic TPS for recycling.",
+    "tip_uncertain": "We couldn't classify this confidently. Please check with your local waste officer.",
+    "try_again": "Classify another item",
+    "error": "Classification failed. Please try again.",
+    "confidence": "Confidence"
+  },
+  "map": {
+    "eyebrow": "Bali TPS Map",
+    "title": "All landfills across Bali",
+    "filter_region": "Filter by region",
+    "filter_status": "Filter by status",
+    "all_regions": "All regions",
+    "all_statuses": "All statuses",
+    "popup_updated": "Updated",
+    "directions": "Directions"
+  },
+  "admin": {
+    "eyebrow": "Admin Dashboard",
+    "title": "Manage TPS Capacity",
+    "login_title": "Admin Login",
+    "email": "Email address",
+    "password": "Password",
+    "login": "Sign in",
+    "logout": "Sign out",
+    "add_tps": "Add New TPS",
+    "edit": "Edit",
+    "save": "Save changes",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "confirm_delete": "Are you sure you want to delete this TPS?",
+    "updated_by": "Updated by",
+    "tps_name": "TPS Name",
+    "address": "Address",
+    "region": "Region",
+    "capacity_notes": "Capacity Notes",
+    "coordinates": "Coordinates (lat, lng)"
+  },
+  "footer": {
+    "tagline": "Keeping Bali's waste system transparent.",
+    "built": "Built for Bali's communities."
+  }
+}

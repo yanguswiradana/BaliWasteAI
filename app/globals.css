@@ -1,26 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
+/* ─── Design Tokens ──────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bw-bg:          #F6F5F0;
+  --bw-surface:     #EFEDE7;
+  --bw-surface-2:   #E8E5DD;
+  --bw-border:      #D4D1CA;
+  --bw-border-2:    #C8C4BC;
+
+  --bw-text:        #1C211D;
+  --bw-text-2:      #4A5049;
+  --bw-text-3:      #7A8479;
+
+  /* Aman — low capacity / organic */
+  --bw-aman:        #4A7C59;
+  --bw-aman-light:  #EAF2ED;
+  --bw-aman-mid:    #C5DDD0;
+
+  /* Perhatian — half full / non-organic */
+  --bw-peringatan:        #B89A3E;
+  --bw-peringatan-light:  #F5F0DF;
+  --bw-peringatan-mid:    #E8D9A5;
+
+  /* Kritis — full / urgent */
+  --bw-kritis:        #9B4A3A;
+  --bw-kritis-light:  #F5ECEA;
+  --bw-kritis-mid:    #E0B8B2;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-pill: 999px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Base Reset ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bw-bg);
+  color: var(--bw-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100svh;
+  padding-bottom: env(safe-area-inset-bottom);
 }
+
+/* ─── Typography Scale ───────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  color: var(--bw-text);
+  font-weight: 600;
+}
+
+h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 700; }
+h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
+h3 { font-size: clamp(1.1rem, 3vw, 1.5rem); }
+
+p {
+  color: var(--bw-text-2);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ─── Utility: Eyebrow Label ─────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bw-text-3);
+}
+
+/* ─── Utility: Mono Label ────────────────────────────────────── */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ─── Hairline Border ────────────────────────────────────────── */
+.hairline {
+  border: 1px solid var(--bw-border);
+}
+
+.hairline-top { border-top: 1px solid var(--bw-border); }
+.hairline-bottom { border-bottom: 1px solid var(--bw-border); }
+
+/* ─── Buttons ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0 1.5rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: all 120ms ease;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--bw-text);
+  color: var(--bw-bg);
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--bw-text-2);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-aman {
+  background-color: var(--bw-aman);
+  color: #fff;
+}
+.btn-aman:hover:not(:disabled) {
+  background-color: #3d6a4a;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--bw-text);
+  border: 1px solid var(--bw-border-2);
+}
+.btn-outline:hover:not(:disabled) {
+  background-color: var(--bw-surface);
+  border-color: var(--bw-text-3);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--bw-text-2);
+  padding: 0 0.75rem;
+}
+.btn-ghost:hover {
+  background-color: var(--bw-surface);
+  color: var(--bw-text);
+}
+
+/* ─── Cards ──────────────────────────────────────────────────── */
+.card {
+  background-color: var(--bw-surface);
+  border: 1px solid var(--bw-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  transition: border-color 120ms ease;
+}
+.card:hover {
+  border-color: var(--bw-border-2);
+}
+
+/* ─── Status Badge ───────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.badge-aman {
+  background-color: var(--bw-aman-light);
+  color: var(--bw-aman);
+}
+
+.badge-peringatan {
+  background-color: var(--bw-peringatan-light);
+  color: var(--bw-peringatan);
+}
+
+.badge-kritis {
+  background-color: var(--bw-kritis-light);
+  color: var(--bw-kritis);
+}
+
+/* ─── Form Inputs ────────────────────────────────────────────── */
+.input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 1rem;
+  background-color: var(--bw-surface);
+  border: 1px solid var(--bw-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--bw-text);
+  outline: none;
+  transition: border-color 120ms ease;
+  appearance: none;
+}
+.input:focus {
+  border-color: var(--bw-text-3);
+}
+.input::placeholder {
+  color: var(--bw-text-3);
+}
+
+/* ─── Page Container ─────────────────────────────────────────── */
+.page-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding-inline: 1.25rem;
+}
+
+/* ─── Section Spacing ────────────────────────────────────────── */
+/* Uses padding-block only — never touches horizontal padding */
+.section {
+  padding-block: 2.5rem;
+}
+
+/* Combined: page-container + section vertical rhythm */
+.page-container.section {
+  padding-inline: 1.25rem;
+  padding-block: 2.5rem;
+}
+
+/* ─── Skeleton Loading ───────────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bw-surface) 25%,
+    var(--bw-surface-2) 50%,
+    var(--bw-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ─── Tong Sampah Gauge (Signature Element) ──────────────────── */
+.tong-gauge {
+  position: relative;
+  display: inline-block;
+}
+
+/* ─── Map override ───────────────────────────────────────────── */
+.leaflet-container {
+  background: var(--bw-surface) !important;
+  font-family: var(--font-body) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--bw-border) !important;
+  box-shadow: none !important;
+  background: var(--bw-surface) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--bw-surface) !important;
+}
+
+/* ─── Bottom Nav ─────────────────────────────────────────────── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bw-surface);
+  border-top: 1px solid var(--bw-border);
+  display: flex;
+  align-items: stretch;
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 100;
+}
+
+.bottom-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 56px;
+  padding: 0.5rem 0.25rem;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+  text-decoration: none;
+  color: var(--bw-text-3);
+  border: none;
+  background: none;
+}
+
+.bottom-nav-item:hover,
+.bottom-nav-item.active {
+  color: var(--bw-text);
+  background-color: var(--bw-bg);
+}
+
+.bottom-nav-item .nav-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ─── Header ─────────────────────────────────────────────────── */
+.header {
+  position: sticky;
+  top: 0;
+  background: var(--bw-bg);
+  border-bottom: 1px solid var(--bw-border);
+  z-index: 50;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Step card ──────────────────────────────────────────────── */
+.step-card {
+  padding: 1.5rem;
+  border-top: 1px solid var(--bw-border);
+}
+.step-card:last-child {
+  border-bottom: 1px solid var(--bw-border);
+}
+
+/* ─── Upload drop zone ───────────────────────────────────────── */
+.upload-zone {
+  border: 1.5px dashed var(--bw-border-2);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 120ms ease;
+  background: var(--bw-surface);
+}
+.upload-zone:hover, .upload-zone.drag-over {
+  border-color: var(--bw-text-3);
+  background: var(--bw-surface-2);
+}
+
+/* ─── Result Card ────────────────────────────────────────────── */
+.result-card-organic {
+  border-color: var(--bw-aman-mid);
+  background-color: var(--bw-aman-light);
+}
+.result-card-nonorganic {
+  border-color: var(--bw-peringatan-mid);
+  background-color: var(--bw-peringatan-light);
+}
+.result-card-uncertain {
+  border-color: var(--bw-border-2);
+  background-color: var(--bw-surface);
+}
+
+/* ─── Admin table ────────────────────────────────────────────── */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admin-table th, .admin-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--bw-border);
+  font-size: 0.875rem;
+}
+.admin-table th {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bw-text-3);
+  background-color: var(--bw-surface);
+  font-weight: 400;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bw-surface); }
+::-webkit-scrollbar-thumb { background: var(--bw-border-2); border-radius: 2px; }
