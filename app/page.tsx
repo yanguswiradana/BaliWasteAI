@@ -1,8 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import TongSampahGauge from "@/components/TongSampahGauge";
-import LandfillCard from "@/components/LandfillCard";
-import { Landfill } from "@/components/LandfillCard";
+import HomeStatusStrip from "@/components/HomeStatusStrip";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,46 +9,6 @@ export const metadata: Metadata = {
   description: "Real-time TPS landfill capacity status across Bali. Find the nearest available waste disposal site before making the trip.",
 };
 
-// Mock data — replace with Supabase fetch in Phase 2
-const MOCK_LANDFILLS: Landfill[] = [
-  {
-    id: "1",
-    name: "TPS Sanur",
-    address: "Jl. Ngurah Rai No. 47, Sanur, Denpasar",
-    region: "Denpasar",
-    latitude: -8.7009,
-    longitude: 115.2625,
-    status: "low",
-    capacity_level: 28,
-    updated_at: new Date(Date.now() - 25 * 60 * 1000).toISOString(),
-    distance_km: 1.2,
-  },
-  {
-    id: "2",
-    name: "TPS Ubud Kaja",
-    address: "Jl. Raya Ubud, Ubud, Gianyar",
-    region: "Gianyar",
-    latitude: -8.5069,
-    longitude: 115.2625,
-    status: "half_full",
-    capacity_level: 62,
-    updated_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-    distance_km: 3.7,
-  },
-  {
-    id: "3",
-    name: "TPS Kuta Selatan",
-    address: "Jl. Raya Kuta, Kuta, Badung",
-    region: "Badung",
-    latitude: -8.7185,
-    longitude: 115.1686,
-    status: "full",
-    capacity_level: 97,
-    notes: "Truck arrives at 15:00",
-    updated_at: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
-    distance_km: 5.1,
-  },
-];
 
 export default async function HomePage() {
   const t = await getTranslations();
@@ -232,11 +191,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            {MOCK_LANDFILLS.map((lf) => (
-              <LandfillCard key={lf.id} landfill={lf} />
-            ))}
-          </div>
+          <HomeStatusStrip />
         </div>
       </section>
 

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import TongSampahGauge from "@/components/TongSampahGauge";
 import StatusBadge from "@/components/StatusBadge";
 import { Landfill } from "@/components/LandfillCard";
-import { getLandfills, saveLandfills } from "@/lib/landfillsStore";
+import { getLandfills, saveLandfills, normalizeLandfill, statusForLevel } from "@/lib/landfillsStore";
 import { loginAction, checkAuthAction, logoutAction } from "./actions";
 
 const REGIONS = ["Denpasar", "Badung", "Gianyar", "Tabanan", "Buleleng", "Karangasem", "Klungkung", "Bangli", "Jembrana"];
@@ -157,7 +157,6 @@ const EMPTY_FORM: Partial<Landfill> = {
   name: "",
   address: "",
   region: "Denpasar",
-  status: "low",
   capacity_level: 20,
   notes: "",
   latitude: -8.67,
@@ -190,19 +189,19 @@ function AddTPSModal({ onClose, onSave }: AddModalProps) {
 
   const handleSave = () => {
     if (!validate()) return;
-    const statusToLevel: Record<string, number> = { low: 20, half_full: 60, full: 95 };
-    const newLf: Landfill = {
+    const capacity_level = Math.min(100, Math.max(0, Math.round(Number(form.capacity_level) || 0)));
+    const newLf: Landfill = normalizeLandfill({
       id: String(Date.now()),
       name: form.name!.trim(),
       address: form.address!.trim(),
       region: form.region ?? "Denpasar",
       latitude: Number(form.latitude),
       longitude: Number(form.longitude),
-      status: (form.status as Landfill["status"]) ?? "low",
-      capacity_level: statusToLevel[form.status ?? "low"],
+      status: "low",
+      capacity_level,
       notes: form.notes?.trim() ?? "",
       updated_at: new Date().toISOString(),
-    };
+    });
     onSave(newLf);
     onClose();
   };
@@ -295,21 +294,26 @@ function AddTPSModal({ onClose, onSave }: AddModalProps) {
             </select>
           </div>
 
-          {/* Status */}
+          {/* Kapasitas */}
           <div>
             <label className="mono-label" style={{ color: "var(--bw-text-3)", display: "block", marginBottom: "0.3rem" }}>
-              Status Kapasitas
+              Kapasitas Terisi (%)
             </label>
-            <select
-              className="input"
-              value={form.status ?? "low"}
-              onChange={(e) => set("status", e.target.value)}
-              id="add-status"
-            >
-              <option value="low">Tersedia (Rendah)</option>
-              <option value="half_full">Setengah Penuh</option>
-              <option value="full">Penuh</option>
-            </select>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={form.capacity_level ?? 20}
+                onChange={(e) => set("capacity_level", Number(e.target.value))}
+                id="add-capacity"
+                style={{ flex: 1, accentColor: "var(--bw-aman)" }}
+              />
+              <span className="mono-label" style={{ minWidth: "3rem", textAlign: "right" }}>
+                {form.capacity_level ?? 20}%
+              </span>
+              <StatusBadge status={statusForLevel(form.capacity_level ?? 20)} />
+            </div>
           </div>
 
           {/* Koordinat via Google Maps URL */}
@@ -349,7 +353,7 @@ function AddTPSModal({ onClose, onSave }: AddModalProps) {
             border: "1px solid var(--bw-border)",
           }}>
             <TongSampahGauge
-              level={form.status === "low" ? 20 : form.status === "half_full" ? 60 : 95}
+              level={form.capacity_level ?? 20}
               size="sm"
             />
             <div>
@@ -435,7 +439,7 @@ export default function AdminPage() {
     setLandfills((prev) =>
       prev.map((lf) =>
         lf.id === editingId
-          ? { ...lf, ...editForm, updated_at: new Date().toISOString() }
+          ? normalizeLandfill({ ...lf, ...editForm, updated_at: new Date().toISOString() })
           : lf
       )
     );
@@ -581,16 +585,21 @@ export default function AdminPage() {
                     onChange={(e) => setEditForm((f) => ({ ...f, name: e.target.value }))} id={`edit-name-${lf.id}`} />
                   <input className="input" value={editForm.address ?? ""} placeholder={t("address")}
                     onChange={(e) => setEditForm((f) => ({ ...f, address: e.target.value }))} id={`edit-address-${lf.id}`} />
-                  <select className="input" value={editForm.status ?? "low"}
-                    onChange={(e) => {
-                      const s = e.target.value as Landfill["status"];
-                      const lvl = s === "low" ? 25 : s === "half_full" ? 60 : 95;
-                      setEditForm((f) => ({ ...f, status: s, capacity_level: lvl }));
-                    }} id={`edit-status-${lf.id}`}>
-                    <option value="low">Tersedia (Rendah)</option>
-                    <option value="half_full">Setengah Penuh</option>
-                    <option value="full">Penuh</option>
-                  </select>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      value={editForm.capacity_level ?? 0}
+                      onChange={(e) => setEditForm((f) => ({ ...f, capacity_level: Number(e.target.value) }))}
+                      id={`edit-capacity-${lf.id}`}
+                      style={{ flex: 1, accentColor: "var(--bw-aman)" }}
+                    />
+                    <span className="mono-label" style={{ minWidth: "3rem", textAlign: "right" }}>
+                      {editForm.capacity_level ?? 0}%
+                    </span>
+                    <StatusBadge status={statusForLevel(editForm.capacity_level ?? 0)} />
+                  </div>
                   <input className="input" value={editForm.notes ?? ""} placeholder={t("capacity_notes")}
                     onChange={(e) => setEditForm((f) => ({ ...f, notes: e.target.value }))} id={`edit-notes-${lf.id}`} />
 
